@@ -1,0 +1,48 @@
+Task:  Need to update dhcp server configuration file
+Input: Mac address,  System name
+Expected : Add rule in '/etc/dhcp/dhcpd.conf' with mac address, with next sequence IP address
+			restart the service (sudo service isc-dhcp-server restart)
+
+
+The existing '/etc/dhcp/dhcpd.conf'
+==================================
+....
+
+host santhosh-laptop {
+        hardware ethernet e4:f8:9c:86:67:85;
+        fixed-address 192.168.1.214;
+        option routers 192.168.1.1;
+}
+
+host marketing-desktop {
+        hardware ethernet C0:25:E9:26:81:B2;
+        fixed-address 192.168.1.215;
+        option routers 192.168.1.1;
+}
+
+Input : fixed-ip-list.csv
+==================================
+ganesh_laptop,A0:B5:C9:D6:E1:F2
+
+The new '/etc/dhcp/dhcpd.conf'
+....
+
+host santhosh-laptop {
+        hardware ethernet e4:f8:9c:86:67:85;
+        fixed-address 192.168.1.214;
+        option routers 192.168.1.1;
+}
+
+host marketing-desktop {
+        hardware ethernet C0:25:E9:26:81:B2;
+        fixed-address 192.168.1.215;
+        option routers 192.168.1.1;
+}
+
+host ganesh_laptop {
+        hardware ethernet A0:B5:C9:D6:E1:F2
+        fixed-address 192.168.1.216;
+        option routers 192.168.1.1;
+}
+
+
